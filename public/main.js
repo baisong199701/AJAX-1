@@ -1,3 +1,16 @@
+getJSON.onclick = ()=>{
+    const request = new XMLHttpRequest();
+    request.open('GET',"/5.json")
+    request.onreadystatechange =()=>{
+        if(request.readyState===4 && request.status ===200){
+            console.log(request.response)
+            const object = JSON.parse(request.response)
+            myName.textContent = object.name
+
+        }
+    };
+    request.send()
+};
 getXML.onclick = ()=>{
     const request = new XMLHttpRequest();
     request.open('GET', "/4.xml")
@@ -5,7 +18,7 @@ getXML.onclick = ()=>{
         if(request.readyState ===4 && request.status ===200){
             const dom = request.responseXML;
             const text = dom.getElementsByTagName('warning')[0].textContent
-            console.log(text)
+            console.log(text.trim())
             
         }
     };
